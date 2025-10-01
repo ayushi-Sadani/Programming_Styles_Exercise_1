@@ -10,7 +10,7 @@ public class Main {
 
         // Always load stop words from stop_words.txt in root folder
         Set<String> stopWords = new HashSet<>();
-        try (Scanner sw = new Scanner(new File("../stop_words.txt"))) {
+        try (Scanner sw = new Scanner(new File("stop_words.txt"))) {
             for (String w : sw.nextLine().split(",")) {
                 stopWords.add(w);
             }
