@@ -8,18 +8,16 @@ public class Main {
             return;
         }
 
-        // Always load stop words from stop_words.txt in root folder
         Set<String> stopWords = new HashSet<>();
-        try (Scanner sw = new Scanner(new File("stop_words.txt"))) {
+        try (Scanner sw = new Scanner(new File("../stop_words.txt"))) {
             for (String w : sw.nextLine().split(",")) {
                 stopWords.add(w);
             }
         }
 
-        // Count word frequencies
         Map<String, Integer> freq = new HashMap<>();
         try (Scanner sc = new Scanner(new File(args[0]))) {
-            sc.useDelimiter("[^a-zA-Z]+"); // split on non-letters
+            sc.useDelimiter("[^a-zA-Z]+"); 
             while (sc.hasNext()) {
                 String word = sc.next().toLowerCase();
                 if (word.length() > 1 && !stopWords.contains(word)) {
@@ -28,7 +26,6 @@ public class Main {
             }
         }
 
-        // Sort and print top 25
         freq.entrySet().stream()
             .sorted((a, b) -> b.getValue() - a.getValue())
             .limit(25)
